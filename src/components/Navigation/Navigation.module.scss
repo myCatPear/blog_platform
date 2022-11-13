@@ -1,0 +1,28 @@
+@import "src/common/style/variables";
+
+.nav {
+  padding-top:43px;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  &__item {
+    min-width: 185px;
+    display: flex;
+  }
+  &__link {
+    color:$text_primary_color;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    padding-left: 12px;
+  }
+}
+
+.svg {
+  fill:$text_primary_color;
+}
