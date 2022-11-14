@@ -1,16 +1,13 @@
 import React from 'react';
 
-import { Header, MainPanel, Navigation } from 'components';
-import { Blogs } from 'features';
+import commonStyle from 'common/style/CommonStyle.module.scss';
+import { Header, MainPanel } from 'components';
 
 export const App: React.FC = () => {
   return (
-    <>
+    <div className={commonStyle.container}>
       <Header />
-      <MainPanel>
-        <Navigation />
-        <Blogs />
-      </MainPanel>
-    </>
+      <MainPanel />
+    </div>
   );
 };

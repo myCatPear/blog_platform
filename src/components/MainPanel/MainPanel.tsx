@@ -3,15 +3,14 @@ import React from 'react';
 import style from './MainPanel.module.scss';
 
 import commonStyle from 'common/style/CommonStyle.module.scss';
+import { Navigation } from 'components';
+import { Blogs } from 'features';
 
-interface IMainPanel {
-  children: React.ReactNode;
-}
-
-export const MainPanel: React.FC<IMainPanel> = ({ children }) => {
+export const MainPanel: React.FC = () => {
   return (
-    <div className={commonStyle.container}>
-      <div className={style.mainPanel}>{children}</div>
+    <div className={`${style.mainPanel} ${commonStyle.container}`}>
+      <Navigation />
+      <Blogs />
     </div>
   );
 };

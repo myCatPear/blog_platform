@@ -10,7 +10,7 @@ export interface IBlogResponse {
   id: string;
   name: string;
   youtubeUrl: string;
-  createdAt: Date;
+  createdAt: string;
 }
 
 export interface IPostResponse {
@@ -20,5 +20,5 @@ export interface IPostResponse {
   content: string;
   blogId: string;
   blogName: string;
-  createdAt: Date;
+  createdAt: string;
 }

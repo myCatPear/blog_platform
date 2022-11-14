@@ -2,6 +2,9 @@
 
 .nav {
   padding-top:43px;
+  padding-left: 64px;
+  background-color: $navigation_bgColor;
+  width: 252px;
 }
 
 .menu {
@@ -23,6 +26,14 @@
   }
 }
 
+.activeLink {
+  color:$active_link_color;
+}
+
 .svg {
   fill:$text_primary_color;
+}
+
+.activeSVG {
+  fill: $active_link_color;
 }
