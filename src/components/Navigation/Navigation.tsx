@@ -27,6 +27,7 @@ export const Navigation: React.FC = () => {
           >
             Blogs
           </NavLink>
+          {isCurrentRouteBlogs && <span className={style.menu__activeBorder} />}
         </li>
         <li className={style.menu__item}>
           <GridIcon
@@ -38,6 +39,7 @@ export const Navigation: React.FC = () => {
           >
             Posts
           </NavLink>
+          {isCurrentRoutePosts && <span className={style.menu__activeBorder} />}
         </li>
       </ul>
     </nav>

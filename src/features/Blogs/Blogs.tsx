@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-
 import style from './Blogs.module.scss';
 import { fetchBlogs } from './blogsSlice';
+
+import { useAppDispatch, useAppSelector } from 'app/hooks';
 
 export const Blogs: React.FC = () => {
   const blogs = useAppSelector(state => state.blogsReducer.items);
@@ -14,9 +14,5 @@ export const Blogs: React.FC = () => {
     dispatch(fetchBlogs());
   }, []);
 
-  return (
-    <div className={style.blogs}>
-      <h2>{blogs.name}</h2>
-    </div>
-  );
+  return <div className={style.blogs}>Blogs</div>;
 };
