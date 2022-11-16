@@ -1,0 +1,1 @@
+export { BlogCollapsed } from './BlogCollapsed';

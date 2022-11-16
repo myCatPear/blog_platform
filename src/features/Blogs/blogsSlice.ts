@@ -9,7 +9,7 @@ const initialState: IResponse<Array<IBlogResponse>> = {
   page: 0,
   pageSize: 0,
   totalCount: 0,
-  items: [],
+  items: [{ name: 'GOOGLE', createdAt: 'YESTERDAY', id: '1', youtubeUrl: 'youtube.com' }],
 };
 
 export const fetchBlogs = createAsyncThunk('blogs/fetchBlogs', async () => {
