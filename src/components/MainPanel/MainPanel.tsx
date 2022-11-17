@@ -2,13 +2,10 @@ import React from 'react';
 
 import style from './MainPanel.module.scss';
 
-import { MainSection, Navigation } from 'components';
+interface IMainPanel {
+  children: React.ReactNode;
+}
 
-export const MainPanel: React.FC = () => {
-  return (
-    <div className={`${style.mainPanel}`}>
-      <Navigation />
-      <MainSection />
-    </div>
-  );
+export const MainPanel: React.FC<IMainPanel> = ({ children }) => {
+  return <div className={`${style.mainPanel}`}>{children}</div>;
 };

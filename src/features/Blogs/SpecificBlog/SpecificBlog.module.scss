@@ -1,0 +1,23 @@
+@import "src/common/style/variables";
+.specificBlog {
+  &__wrapper {
+    padding: 29px 64px 29px 27px;
+  }
+
+  &__title {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 7px;
+  }
+  &__header {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+  }
+  &__blogName {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
