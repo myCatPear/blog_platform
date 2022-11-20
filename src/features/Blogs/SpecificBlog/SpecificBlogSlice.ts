@@ -19,10 +19,10 @@ export const fetchSpecificBlog = createAsyncThunk(
 );
 
 const initialState: IBlogResponse = {
-  id: EMPTY_STRING,
-  name: EMPTY_STRING,
-  youtubeUrl: EMPTY_STRING,
-  createdAt: EMPTY_STRING,
+  id: '1',
+  name: 'test name',
+  youtubeUrl: 'https://testURL.com',
+  createdAt: '2022-11-20T12:15:48.405Z',
 };
 
 const specificBlogSlice = createSlice({

@@ -3,3 +3,4 @@ export const ROUTE_TO_BLOGS = '/blogs';
 export const ROUTE_TO_SPECIFIC_BLOGS = '/blogs/:id';
 export const ROUTE_TO_POSTS = '/posts';
 export const EMPTY_STRING = '';
+export const ROUTE_TO_NOT_EXISTING_PAGE = '*';

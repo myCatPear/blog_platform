@@ -1,4 +1,9 @@
-import { ROUTE_TO_BLOGS, ROUTE_TO_HOME, ROUTE_TO_SPECIFIC_BLOGS } from 'common/constants';
+import {
+  ROUTE_TO_BLOGS,
+  ROUTE_TO_NOT_EXISTING_PAGE,
+  ROUTE_TO_SPECIFIC_BLOGS,
+} from 'common/constants';
+import { PageNotFound } from 'components';
 import { Blogs, SpecificBlog } from 'features';
 
 export const publicRoutes = [
@@ -11,7 +16,11 @@ export const publicRoutes = [
     Component: SpecificBlog,
   },
   {
-    path: ROUTE_TO_HOME,
-    Component: Blogs,
+    path: ROUTE_TO_SPECIFIC_BLOGS,
+    Component: SpecificBlog,
+  },
+  {
+    path: ROUTE_TO_NOT_EXISTING_PAGE,
+    Component: PageNotFound,
   },
 ];
