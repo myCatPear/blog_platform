@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Navigate, Route, Routes } from 'react-router-dom';
+
+import { setIsInitializedApp } from './appSlice';
+import { useAppDispatch, useAppSelector } from './hooks';
 
 import { ROUTE_TO_BLOGS, ROUTE_TO_HOME } from 'common/constants';
 import { publicRoutes } from 'common/routes';
 import commonStyle from 'common/style/CommonStyle.module.scss';
-import { Header, MainPanel, MainSection, Navigation } from 'components';
+import { AppLoadingBar, Header, MainPanel, MainSection, Navigation } from 'components';
 
 export const App: React.FC = () => {
+  const isInitializedApp = useAppSelector(state => state.appReducer.isInitializedApp);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setIsInitializedApp({ value: true }));
+  }, []);
+
+  if (!isInitializedApp) {
+    return <AppLoadingBar />;
+  }
+
   return (
     <div className={commonStyle.container}>
       <Header />

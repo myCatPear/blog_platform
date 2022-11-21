@@ -14,7 +14,7 @@ import { SpecificBlogDescription } from 'features';
 
 export const SpecificBlog: React.FC = () => {
   const { id } = useParams();
-  const currentBlog = useAppSelector(state => state.specificBlogReducer);
+  const currentSpecificBlog = useAppSelector(state => state.specificBlogReducer);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export const SpecificBlog: React.FC = () => {
     };
   }, []);
 
-  console.log(currentBlog);
+  console.log(currentSpecificBlog);
 
   return (
     <div className={style.specificBlog}>
@@ -33,7 +33,7 @@ export const SpecificBlog: React.FC = () => {
         <header className={style.specificBlog__header}>
           <h2 className={style.specificBlog__title}>Blogs</h2>
           <TriangleSVG />
-          <h3 className={style.specificBlog__blogName}>{currentBlog.name}</h3>
+          <h3 className={style.specificBlog__blogName}>{currentSpecificBlog.name}</h3>
         </header>
         <hr className={commonStyle.line} />
         <div className={style.specificBlog__backToBlogs}>
