@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 
 import { NavLink, useParams } from 'react-router-dom';
 
+import { BlogSkeletonLoading } from '../../../components';
+
 import style from './SpecificBlog.module.scss';
 import { fetchSpecificBlog, setEmptySpecificBlogState } from './SpecificBlogSlice';
 
@@ -15,17 +17,16 @@ import { SpecificBlogDescription } from 'features';
 export const SpecificBlog: React.FC = () => {
   const { id } = useParams();
   const currentSpecificBlog = useAppSelector(state => state.specificBlogReducer);
+  const isLoadingBlog = useAppSelector(state => state.appReducer.isLoadingBlogs);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (id && id !== '1') dispatch(fetchSpecificBlog(id));
+    if (id) dispatch(fetchSpecificBlog(id));
 
     return () => {
       if (id && id !== '1') dispatch(setEmptySpecificBlogState());
     };
   }, []);
-
-  console.log(currentSpecificBlog);
 
   return (
     <div className={style.specificBlog}>
@@ -43,7 +44,11 @@ export const SpecificBlog: React.FC = () => {
           </NavLink>
         </div>
         <section className={style.mainSection}>
-          <SpecificBlogDescription />
+          {isLoadingBlog ? (
+            <BlogSkeletonLoading />
+          ) : (
+            <SpecificBlogDescription {...currentSpecificBlog} />
+          )}
         </section>
       </div>
     </div>

@@ -9,7 +9,7 @@ import { ROUTE_TO_BLOGS } from 'common/constants';
 import { IBlogResponse } from 'common/types/api';
 
 export const CollapsedBlog: React.FC<IBlogResponse> = props => {
-  const { name, id } = props;
+  const { name, id, websiteUrl, description } = props;
 
   return (
     <div className={style.blogCollapsed}>
@@ -22,15 +22,11 @@ export const CollapsedBlog: React.FC<IBlogResponse> = props => {
         </NavLink>
         <div className={style.blogCollapsed__description}>
           Website:
-          <a href="google.com" className={style.blogCollapsed__link}>
-            https://youtube.com
+          <a href={websiteUrl} className={style.blogCollapsed__link}>
+            {websiteUrl}
           </a>
         </div>
-        <p className={style.blogCollapsed__text}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, Lorem
-          ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        </p>
+        <p className={style.blogCollapsed__text}>{description}</p>
       </div>
     </div>
   );

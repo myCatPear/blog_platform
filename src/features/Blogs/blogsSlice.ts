@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { blogsAPI } from '../../api/blogs';
+import { setIsLoadingBlogs } from '../../app/appSlice';
 
 import { IBlogResponse, IResponse } from 'common/types/api';
 
@@ -9,16 +10,27 @@ const initialState: IResponse<Array<IBlogResponse>> = {
   page: 0,
   pageSize: 0,
   totalCount: 0,
-  items: [{ name: 'GOOGLE', createdAt: 'YESTERDAY', id: '1', youtubeUrl: 'youtube.com' }],
+  items: [
+    {
+      name: 'GOOGLE',
+      createdAt: 'YESTERDAY',
+      id: '1',
+      websiteUrl: 'youtube.com',
+      description: 'test description',
+    },
+  ],
 };
 
-export const fetchBlogs = createAsyncThunk('blogs/fetchBlogs', async () => {
+export const fetchBlogs = createAsyncThunk('blogs/fetchBlogs', async (arg, thunkAPI) => {
   try {
+    thunkAPI.dispatch(setIsLoadingBlogs({ value: true }));
     const res = await blogsAPI.getAllBlogs();
 
     return res.data;
   } catch (error) {
     console.log('error', error);
+  } finally {
+    thunkAPI.dispatch(setIsLoadingBlogs({ value: false }));
   }
 });
 

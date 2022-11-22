@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { blogsAPI } from '../../../api/blogs';
+import { setIsLoadingBlogs } from '../../../app/appSlice';
 
+import { blogsAPI } from 'api/blogs';
 import { EMPTY_STRING } from 'common/constants';
 import { IBlogResponse } from 'common/types/api';
 
@@ -9,11 +10,14 @@ export const fetchSpecificBlog = createAsyncThunk(
   'fetchSpecificBlog',
   async (id: string, thunkAPI) => {
     try {
+      thunkAPI.dispatch(setIsLoadingBlogs({ value: true }));
       const res = await blogsAPI.getSpecificBlog(id);
 
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(null);
+    } finally {
+      thunkAPI.dispatch(setIsLoadingBlogs({ value: false }));
     }
   },
 );
@@ -21,8 +25,9 @@ export const fetchSpecificBlog = createAsyncThunk(
 const initialState: IBlogResponse = {
   id: '1',
   name: 'test name',
-  youtubeUrl: 'https://testURL.com',
+  websiteUrl: 'https://testURL.com',
   createdAt: '2022-11-20T12:15:48.405Z',
+  description: 'test description',
 };
 
 const specificBlogSlice = createSlice({
@@ -33,8 +38,9 @@ const specificBlogSlice = createSlice({
       return {
         id: EMPTY_STRING,
         name: EMPTY_STRING,
-        youtubeUrl: EMPTY_STRING,
+        websiteUrl: EMPTY_STRING,
         createdAt: EMPTY_STRING,
+        description: EMPTY_STRING,
       };
     },
   },

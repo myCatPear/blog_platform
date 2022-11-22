@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
+import { BlogSkeletonLoading } from '../../components';
 
 import style from './Blogs.module.scss';
+import { fetchBlogs } from './blogsSlice';
 import { CollapsedBlog } from './CollapsedBlog';
 
-import { useAppSelector } from 'app/hooks';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
 import commonStyle from 'common/style/CommonStyle.module.scss';
 
 export const Blogs: React.FC = () => {
   const blogs = useAppSelector(state => state.blogsReducer.items);
-  // const dispatch = useAppDispatch();
-  //
-  // console.log(blogs);
-  // useEffect(() => {
-  //   dispatch(fetchBlogs());
-  // }, []);
+  const isLoadingBlogs = useAppSelector(state => state.appReducer.isLoadingBlogs);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchBlogs());
+  }, []);
 
   return (
     <div className={style.blogs}>
@@ -29,9 +32,15 @@ export const Blogs: React.FC = () => {
           </select>
         </div>
         <div className={style.blogs__blogsList}>
-          {blogs.map(blog => (
-            <CollapsedBlog {...blog} key={blog.id} />
-          ))}
+          {isLoadingBlogs ? (
+            <>
+              <BlogSkeletonLoading />
+              <BlogSkeletonLoading />
+              <BlogSkeletonLoading />
+            </>
+          ) : (
+            blogs.map(blog => <CollapsedBlog {...blog} key={blog.id} />)
+          )}
         </div>
       </div>
     </div>

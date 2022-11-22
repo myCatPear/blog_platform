@@ -2,7 +2,7 @@ import React from 'react';
 
 import ContentLoader from 'react-content-loader';
 
-const MyLoader = (props):any => (
+export const BlogSkeletonLoading = (props: any): React.ReactElement => (
   <ContentLoader
     speed={2}
     width={600}
@@ -19,5 +19,3 @@ const MyLoader = (props):any => (
     <rect x="159" y="44" rx="0" ry="0" width="149" height="16" />
   </ContentLoader>
 );
-
-export default MyLoader;
