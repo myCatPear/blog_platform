@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
 
-import { BlogSkeletonLoading } from '../../components';
-
 import style from './Blogs.module.scss';
 import { fetchBlogs } from './blogsSlice';
 import { CollapsedBlog } from './CollapsedBlog';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { getAllBlogs, getIsLoadingBlogs } from 'common/selectors';
 import commonStyle from 'common/style/CommonStyle.module.scss';
+import { BlogSkeletonLoading } from 'components';
 
 export const Blogs: React.FC = () => {
-  const blogs = useAppSelector(state => state.blogsReducer.items);
-  const isLoadingBlogs = useAppSelector(state => state.appReducer.isLoadingBlogs);
+  const blogs = useAppSelector(getAllBlogs);
+  const isLoadingBlogs = useAppSelector(getIsLoadingBlogs);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

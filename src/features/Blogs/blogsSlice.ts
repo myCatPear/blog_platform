@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { blogsAPI } from '../../api/blogs';
-import { setIsLoadingBlogs } from '../../app/appSlice';
-
+import { blogsAPI } from 'api/blogs';
+import { setIsLoadingBlogs } from 'app/appSlice';
 import { IBlogResponse, IResponse } from 'common/types/api';
 
 const initialState: IResponse<Array<IBlogResponse>> = {

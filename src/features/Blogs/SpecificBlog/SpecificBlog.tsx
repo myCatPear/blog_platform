@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 
 import { NavLink, useParams } from 'react-router-dom';
 
-import { BlogSkeletonLoading } from '../../../components';
-
 import style from './SpecificBlog.module.scss';
 import { fetchSpecificBlog, setEmptySpecificBlogState } from './SpecificBlogSlice';
 
@@ -11,13 +9,15 @@ import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { ReactComponent as BackArrowSVG } from 'assets/img/blog/backArrow.svg';
 import { ReactComponent as TriangleSVG } from 'assets/img/blog/triangle.svg';
 import { ROUTE_TO_BLOGS } from 'common/constants';
+import { getCurrentSpecificBlog, getIsLoadingBlogs } from 'common/selectors';
 import commonStyle from 'common/style/CommonStyle.module.scss';
+import { BlogSkeletonLoading } from 'components';
 import { SpecificBlogDescription } from 'features';
 
 export const SpecificBlog: React.FC = () => {
   const { id } = useParams();
-  const currentSpecificBlog = useAppSelector(state => state.specificBlogReducer);
-  const isLoadingBlog = useAppSelector(state => state.appReducer.isLoadingBlogs);
+  const currentSpecificBlog = useAppSelector(getCurrentSpecificBlog);
+  const isLoadingBlog = useAppSelector(getIsLoadingBlogs);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

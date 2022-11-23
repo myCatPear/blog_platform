@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { setIsLoadingBlogs } from '../../../app/appSlice';
-
 import { blogsAPI } from 'api/blogs';
+import { setIsLoadingBlogs } from 'app/appSlice';
 import { EMPTY_STRING } from 'common/constants';
 import { IBlogResponse } from 'common/types/api';
 

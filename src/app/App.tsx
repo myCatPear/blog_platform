@@ -7,11 +7,12 @@ import { useAppDispatch, useAppSelector } from './hooks';
 
 import { ROUTE_TO_BLOGS, ROUTE_TO_HOME } from 'common/constants';
 import { publicRoutes } from 'common/routes';
+import { getIsInitializedApp } from 'common/selectors';
 import commonStyle from 'common/style/CommonStyle.module.scss';
 import { AppLoadingBar, Header, MainPanel, MainSection, Navigation } from 'components';
 
 export const App: React.FC = () => {
-  const isInitializedApp = useAppSelector(state => state.appReducer.isInitializedApp);
+  const isInitializedApp = useAppSelector(getIsInitializedApp);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
