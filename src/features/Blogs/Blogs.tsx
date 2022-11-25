@@ -32,12 +32,15 @@ export const Blogs: React.FC = () => {
           </select>
         </div>
         <div className={style.blogs__blogsList}>
+          {/* eslint-disable-next-line no-nested-ternary */}
           {isLoadingBlogs ? (
             <>
               <BlogSkeletonLoading />
               <BlogSkeletonLoading />
               <BlogSkeletonLoading />
             </>
+          ) : blogs.length === 0 ? (
+            <div>no blogs</div>
           ) : (
             blogs.map(blog => <CollapsedBlog {...blog} key={blog.id} />)
           )}

@@ -13,4 +13,5 @@ export const getIsLoadingBlogs = (state: RootStateType): boolean =>
 export const getCurrentSpecificBlog = (state: RootStateType): IBlogResponse =>
   state.specificBlogReducer;
 
-export const getAllPosts = (state: RootStateType): IPostResponse[] => state.postsReducer;
+export const getAllPosts = (state: RootStateType): IPostResponse[] =>
+  state.postsReducer.items;

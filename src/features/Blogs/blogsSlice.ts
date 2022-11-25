@@ -33,6 +33,21 @@ export const fetchBlogs = createAsyncThunk('blogs/fetchBlogs', async (arg, thunk
   }
 });
 
+export const fetchAllPostsForSpecificBlog = createAsyncThunk(
+  'blogs/fetchAllPostsForSpecificBlog',
+  async (id: string, thunkAPI) => {
+    try {
+      const res = await blogsAPI.getAllPostsForSpecificBlogs(id);
+
+      return res.data;
+    } catch (error) {
+      console.log(error);
+
+      return thunkAPI.rejectWithValue(null);
+    }
+  },
+);
+
 export const blogsSlice = createSlice({
   name: 'blogs',
   initialState,
@@ -40,11 +55,12 @@ export const blogsSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(fetchBlogs.fulfilled, (state, action) => {
       if (action.payload) {
-        state.page = action.payload.page;
-        state.pagesCount = action.payload.pagesCount;
-        state.pageSize = action.payload.pageSize;
-        state.totalCount = action.payload.totalCount;
-        state.items = action.payload.items;
+        // state.page = action.payload.page;
+        // state.pagesCount = action.payload.pagesCount;
+        // state.pageSize = action.payload.pageSize;
+        // state.totalCount = action.payload.totalCount;
+        // state.items = action.payload.items;
+        return action.payload;
       }
     });
   },

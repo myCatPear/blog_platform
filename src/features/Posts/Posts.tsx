@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { CollapsedPost } from './CollapsedPost';
 import style from './Posts.module.scss';
+import { fetchAllPosts } from './postsSlice';
 
-import { useAppSelector } from 'app/hooks';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { getAllPosts } from 'common/selectors';
 import commonStyle from 'common/style/CommonStyle.module.scss';
 
 export const Posts: React.FC = () => {
   const posts = useAppSelector(getAllPosts);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllPosts());
+  }, []);
 
   return (
     <div className={style.posts}>
