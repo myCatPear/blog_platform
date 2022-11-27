@@ -14,7 +14,7 @@ export const blogsAPI = {
   },
   getAllPostsForSpecificBlogs(id: string) {
     return apiConfig.get<IResponse<IPostResponse[]>>(
-      `${ROUTE_TO_BLOGS}/${id}/${ROUTE_TO_POSTS}`,
+      `${ROUTE_TO_BLOGS}/${id}${ROUTE_TO_POSTS}`,
     );
   },
   getSpecificBlog(id: string) {

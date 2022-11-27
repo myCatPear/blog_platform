@@ -5,6 +5,7 @@ export { CollapsedBlog } from './Blogs/CollapsedBlog';
 export { SpecificBlog } from './Blogs/SpecificBlog';
 export { specificBlogReducer } from './Blogs/SpecificBlog';
 export { SpecificBlogDescription } from './Blogs/SpecificBlog/SpecificBlogDescription';
+export { fetchAllPostsForSpecificBlog } from './Blogs/blogsSlice';
 
 export { Posts } from './Posts';
 export { CollapsedPost } from './Posts/CollapsedPost';

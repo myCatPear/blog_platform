@@ -7,11 +7,14 @@ export const getIsInitializedApp = (state: RootStateType): boolean =>
 export const getAllBlogs = (state: RootStateType): IBlogResponse[] =>
   state.blogsReducer.items;
 
-export const getIsLoadingBlogs = (state: RootStateType): boolean =>
-  state.appReducer.isLoadingBlogs;
+export const getAllPosts = (state: RootStateType): IPostResponse[] =>
+  state.postsReducer.items;
+
+export const getIsFetchBlogs = (state: RootStateType): boolean =>
+  state.appReducer.isFetchBlogs;
+
+export const getIsFetchPosts = (state: RootStateType): boolean =>
+  state.appReducer.isFetchPosts;
 
 export const getCurrentSpecificBlog = (state: RootStateType): IBlogResponse =>
   state.specificBlogReducer;
-
-export const getAllPosts = (state: RootStateType): IPostResponse[] =>
-  state.postsReducer.items;

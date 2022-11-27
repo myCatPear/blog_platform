@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { blogsAPI } from 'api/blogs';
-import { setIsLoadingBlogs } from 'app/appSlice';
+import { setIsFetchBlogs } from 'app/appSlice';
 import { EMPTY_STRING } from 'common/constants';
 import { IBlogResponse } from 'common/types/api';
 
@@ -9,14 +9,14 @@ export const fetchSpecificBlog = createAsyncThunk(
   'fetchSpecificBlog',
   async (id: string, thunkAPI) => {
     try {
-      thunkAPI.dispatch(setIsLoadingBlogs({ value: true }));
+      thunkAPI.dispatch(setIsFetchBlogs({ value: true }));
       const res = await blogsAPI.getSpecificBlog(id);
 
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(null);
     } finally {
-      thunkAPI.dispatch(setIsLoadingBlogs({ value: false }));
+      thunkAPI.dispatch(setIsFetchBlogs({ value: false }));
     }
   },
 );

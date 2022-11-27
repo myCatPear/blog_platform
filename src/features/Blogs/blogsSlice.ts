@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { blogsAPI } from 'api/blogs';
-import { setIsLoadingBlogs } from 'app/appSlice';
+import { setIsFetchBlogs, setIsFetchPosts } from 'app/appSlice';
 import { IBlogResponse, IResponse } from 'common/types/api';
 
 const initialState: IResponse<Array<IBlogResponse>> = {
@@ -22,14 +22,14 @@ const initialState: IResponse<Array<IBlogResponse>> = {
 
 export const fetchBlogs = createAsyncThunk('blogs/fetchBlogs', async (arg, thunkAPI) => {
   try {
-    thunkAPI.dispatch(setIsLoadingBlogs({ value: true }));
+    thunkAPI.dispatch(setIsFetchBlogs({ value: true }));
     const res = await blogsAPI.getAllBlogs();
 
     return res.data;
   } catch (error) {
     console.log('error', error);
   } finally {
-    thunkAPI.dispatch(setIsLoadingBlogs({ value: false }));
+    thunkAPI.dispatch(setIsFetchBlogs({ value: false }));
   }
 });
 
@@ -37,6 +37,7 @@ export const fetchAllPostsForSpecificBlog = createAsyncThunk(
   'blogs/fetchAllPostsForSpecificBlog',
   async (id: string, thunkAPI) => {
     try {
+      thunkAPI.dispatch(setIsFetchPosts({ value: true }));
       const res = await blogsAPI.getAllPostsForSpecificBlogs(id);
 
       return res.data;
@@ -44,6 +45,8 @@ export const fetchAllPostsForSpecificBlog = createAsyncThunk(
       console.log(error);
 
       return thunkAPI.rejectWithValue(null);
+    } finally {
+      thunkAPI.dispatch(setIsFetchPosts({ value: false }));
     }
   },
 );

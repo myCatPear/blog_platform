@@ -36,5 +36,11 @@
 }
 
 .mainSection {
+  margin-bottom: 48px;
+}
 
+.posts {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
 }

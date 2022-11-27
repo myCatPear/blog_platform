@@ -5,13 +5,13 @@ import { fetchBlogs } from './blogsSlice';
 import { CollapsedBlog } from './CollapsedBlog';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { getAllBlogs, getIsLoadingBlogs } from 'common/selectors';
+import { getAllBlogs, getIsFetchBlogs } from 'common/selectors';
 import commonStyle from 'common/style/CommonStyle.module.scss';
 import { BlogSkeletonLoading } from 'components';
 
 export const Blogs: React.FC = () => {
   const blogs = useAppSelector(getAllBlogs);
-  const isLoadingBlogs = useAppSelector(getIsLoadingBlogs);
+  const isFetchBlogs = useAppSelector(getIsFetchBlogs);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export const Blogs: React.FC = () => {
         </div>
         <div className={style.blogs__blogsList}>
           {/* eslint-disable-next-line no-nested-ternary */}
-          {isLoadingBlogs ? (
+          {isFetchBlogs ? (
             <>
               <BlogSkeletonLoading />
               <BlogSkeletonLoading />

@@ -1,15 +1,18 @@
 import React, { useEffect } from 'react';
 
+import { PostSkeletonLoading } from '../../components';
+
 import { CollapsedPost } from './CollapsedPost';
 import style from './Posts.module.scss';
 import { fetchAllPosts } from './postsSlice';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { getAllPosts } from 'common/selectors';
+import { getAllPosts, getIsFetchPosts } from 'common/selectors';
 import commonStyle from 'common/style/CommonStyle.module.scss';
 
 export const Posts: React.FC = () => {
   const posts = useAppSelector(getAllPosts);
+  const isFetchPosts = useAppSelector(getIsFetchPosts);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -29,15 +32,23 @@ export const Posts: React.FC = () => {
           </select>
         </div>
         <div className={style.posts__postsList}>
-          {posts.map(post => (
-            <CollapsedPost
-              key={post.id}
-              id={post.id}
-              title={post.title}
-              shortDescription={post.shortDescription}
-              date={post.createdAt}
-            />
-          ))}
+          {isFetchPosts ? (
+            <>
+              <PostSkeletonLoading />
+              <PostSkeletonLoading />
+              <PostSkeletonLoading />
+            </>
+          ) : (
+            posts.map(post => (
+              <CollapsedPost
+                key={post.id}
+                id={post.id}
+                title={post.title}
+                shortDescription={post.shortDescription}
+                date={post.createdAt}
+              />
+            ))
+          )}
         </div>
       </div>
     </div>

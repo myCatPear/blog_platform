@@ -8,7 +8,7 @@ export const BlogSkeletonLoading = (props: any): React.ReactElement => (
     width={600}
     height={150}
     viewBox="0 0 600 150"
-    backgroundColor="#f3f3f3"
+    backgroundColor="#DEDBDC"
     foregroundColor="#ecebeb"
     {...props}
   >

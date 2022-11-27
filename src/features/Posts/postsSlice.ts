@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { fetchAllPostsForSpecificBlog } from '../Blogs/blogsSlice';
-
 import { postsAPI } from 'api/posts';
+import { setIsFetchPosts } from 'app/appSlice';
 import { IPostResponse, IResponse } from 'common/types/api';
+import { fetchAllPostsForSpecificBlog } from 'features';
 
 const initialState: IResponse<IPostResponse[]> = {
   pagesCount: 0,
@@ -52,6 +52,7 @@ const initialState: IResponse<IPostResponse[]> = {
 
 export const fetchAllPosts = createAsyncThunk('fetchAllPosts', async (arg, thunkAPI) => {
   try {
+    thunkAPI.dispatch(setIsFetchPosts({ value: true }));
     const res = await postsAPI.getAllPosts();
 
     return res.data;
@@ -59,6 +60,8 @@ export const fetchAllPosts = createAsyncThunk('fetchAllPosts', async (arg, thunk
     console.log(error);
 
     return thunkAPI.rejectWithValue(null);
+  } finally {
+    thunkAPI.dispatch(setIsFetchPosts({ value: false }));
   }
 });
 
