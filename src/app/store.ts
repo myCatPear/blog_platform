@@ -3,7 +3,12 @@ import thunkMiddleware from 'redux-thunk';
 
 import { appReducer } from './appSlice';
 
-import { blogsReducer, postsReducer, specificBlogReducer } from 'features';
+import {
+  blogsReducer,
+  postsReducer,
+  specificBlogReducer,
+  specificPostReducer,
+} from 'features';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +16,7 @@ export const store = configureStore({
     postsReducer,
     specificBlogReducer,
     appReducer,
+    specificPostReducer,
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunkMiddleware),
 });

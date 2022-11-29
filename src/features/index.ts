@@ -11,3 +11,4 @@ export { Posts } from './Posts';
 export { CollapsedPost } from './Posts/CollapsedPost';
 export { SpecificPost } from './Posts/SpecificPost';
 export { SpecificPostDescription } from './Posts/SpecificPost/SpecificPostDescription';
+export { specificPostReducer } from './Posts/SpecificPost/SpecificPostSlice';

@@ -1,10 +1,14 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import { NavLink, useParams } from 'react-router-dom';
 
+import { PostSkeletonLoading } from '../../../components';
+
 import style from './SpecificPost.module.scss';
 import { SpecificPostDescription } from './SpecificPostDescription';
+import { fetchSpecificPost, setEmptySpecificPost } from './SpecificPostSlice';
 
+import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { ReactComponent as BackArrowSVG } from 'assets/img/blog/backArrow.svg';
 import { ReactComponent as TriangleSVG } from 'assets/img/blog/triangle.svg';
 import { ROUTE_TO_POSTS } from 'common/constants';
@@ -12,8 +16,18 @@ import commonStyle from 'common/style/CommonStyle.module.scss';
 
 export const SpecificPost: FC = () => {
   const { id } = useParams();
+  const dispatch = useAppDispatch();
+  const currentSpecificPost = useAppSelector(state => state.specificPostReducer);
+  const isFetchSpecificPost = useAppSelector(state => state.appReducer.isFetchPosts);
 
-  console.log(id);
+  useEffect(() => {
+    if (id) dispatch(fetchSpecificPost(id));
+
+    return () => {
+      dispatch(setEmptySpecificPost());
+    };
+  }, []);
+  const { title, blogName, createdAt, content } = currentSpecificPost;
 
   return (
     <div className={style.specificPost}>
@@ -21,7 +35,7 @@ export const SpecificPost: FC = () => {
         <header className={style.specificPost__header}>
           <h2 className={style.specificPost__title}>Posts</h2>
           <TriangleSVG />
-          <h3 className={style.specificPost__blogName}>TEST post name</h3>
+          <h3 className={style.specificPost__blogName}>{title}</h3>
         </header>
         <hr className={commonStyle.line} />
         <div className={style.specificPost__backToBlogs}>
@@ -31,7 +45,16 @@ export const SpecificPost: FC = () => {
           </NavLink>
         </div>
         <section className={style.mainSection}>
-          <SpecificPostDescription />
+          {isFetchSpecificPost ? (
+            <PostSkeletonLoading />
+          ) : (
+            <SpecificPostDescription
+              blogName={blogName}
+              title={title}
+              createdDate={createdAt}
+              content={content}
+            />
+          )}
         </section>
       </div>
     </div>
